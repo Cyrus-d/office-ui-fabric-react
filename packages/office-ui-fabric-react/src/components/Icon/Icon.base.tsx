@@ -36,7 +36,7 @@ export class IconBase extends React.Component<IIconProps, IIconState> {
       isPlaceholder
     });
 
-    const RootType = isImage ? 'div' : 'i';
+    const RootType = isImage ? 'span' : 'i';
     const nativeProps = getNativeProps<React.HTMLAttributes<HTMLDivElement>>(this.props, htmlElementProperties, ['aria-label']);
     const { imageLoadError } = this.state;
     const imageProps: IImageProps = {
@@ -51,8 +51,7 @@ export class IconBase extends React.Component<IIconProps, IIconState> {
           'aria-label': ariaLabel
         }
       : {
-          role: 'presentation',
-          'aria-hidden': imageProps.alt || imageProps['aria-labelledby'] ? false : true
+          'aria-hidden': this.props['aria-labelledby'] || imageProps['aria-labelledby'] ? false : true
         };
 
     return (

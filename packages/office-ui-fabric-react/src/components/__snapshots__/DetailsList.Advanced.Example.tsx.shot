@@ -4,7 +4,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
 <div
   className=
 
-      & .headerDivider-518:hover + .headerDividerBar-519 {
+      & .DetailsListAdvancedExample-divider:hover + .DetailsListAdvancedExample-divider {
         display: inline;
       }
 >
@@ -54,6 +54,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
           role="menubar"
         >
           <div
+            aria-orientation="horizontal"
             className=
                 ms-OverflowSet
                 ms-CommandBar-primaryCommand
@@ -64,7 +65,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                   flex-wrap: nowrap;
                   position: relative;
                 }
-            role="presentation"
+            role="menubar"
           >
             <div
               className=
@@ -435,6 +436,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                 className=
                     ms-Button
                     ms-Button--commandBar
+                    ms-Button--hasMenu
                     ms-CommandBarItem-link
                     {
                       -moz-osx-font-smoothing: grayscale;
@@ -636,6 +638,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
             </div>
           </div>
           <div
+            aria-orientation="horizontal"
             className=
                 ms-OverflowSet
                 ms-CommandBar-secondaryCommand
@@ -646,7 +649,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                   flex-wrap: nowrap;
                   position: relative;
                 }
-            role="presentation"
+            role="menubar"
           >
             <div
               className=
@@ -797,6 +800,13 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
     </div>
   </div>
   <div
+    aria-live="polite"
+    className=
+
+
+    role="status"
+  />
+  <div
     className="ms-Viewport"
     style={
       Object {
@@ -944,7 +954,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                 <div
                   aria-checked={false}
                   aria-describedby="header13-checkTooltip"
-                  aria-label="Toggle selection"
+                  aria-label="Toggle selection for all items"
                   className=
                       ms-DetailsRow-check
                       ms-DetailsHeader-check
@@ -1293,7 +1303,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                           {
                             -moz-osx-font-smoothing: grayscale;
                             -webkit-font-smoothing: antialiased;
-                            font-family: "FabricMDL2Icons-1";
+                            font-family: "FabricMDL2Icons-2";
                             font-style: normal;
                             font-weight: normal;
                             speak: none;
@@ -1421,7 +1431,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
             </span>
             <span
               className=
-
+                  DetailsListAdvancedExample-divider
                   {
                     background: #0078d4;
                     bottom: 0px;
@@ -1805,6 +1815,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                         >
                           <div
                             aria-colindex={2}
+                            aria-readonly={true}
                             className=
                                 ms-DetailsRow-cell
                                 {
@@ -2199,6 +2210,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                         >
                           <div
                             aria-colindex={2}
+                            aria-readonly={true}
                             className=
                                 ms-DetailsRow-cell
                                 {
@@ -2593,6 +2605,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                         >
                           <div
                             aria-colindex={2}
+                            aria-readonly={true}
                             className=
                                 ms-DetailsRow-cell
                                 {
@@ -2987,6 +3000,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                         >
                           <div
                             aria-colindex={2}
+                            aria-readonly={true}
                             className=
                                 ms-DetailsRow-cell
                                 {
@@ -3381,6 +3395,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                         >
                           <div
                             aria-colindex={2}
+                            aria-readonly={true}
                             className=
                                 ms-DetailsRow-cell
                                 {
@@ -3775,6 +3790,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                         >
                           <div
                             aria-colindex={2}
+                            aria-readonly={true}
                             className=
                                 ms-DetailsRow-cell
                                 {
@@ -4169,6 +4185,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                         >
                           <div
                             aria-colindex={2}
+                            aria-readonly={true}
                             className=
                                 ms-DetailsRow-cell
                                 {
@@ -4563,6 +4580,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                         >
                           <div
                             aria-colindex={2}
+                            aria-readonly={true}
                             className=
                                 ms-DetailsRow-cell
                                 {
@@ -4957,6 +4975,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                         >
                           <div
                             aria-colindex={2}
+                            aria-readonly={true}
                             className=
                                 ms-DetailsRow-cell
                                 {
@@ -5351,6 +5370,7 @@ exports[`Component Examples renders DetailsList.Advanced.Example.tsx correctly 1
                         >
                           <div
                             aria-colindex={2}
+                            aria-readonly={true}
                             className=
                                 ms-DetailsRow-cell
                                 {

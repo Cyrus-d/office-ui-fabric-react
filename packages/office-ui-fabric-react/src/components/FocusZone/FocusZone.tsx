@@ -23,7 +23,8 @@ import {
   shouldWrapFocus,
   warnDeprecations,
   portalContainsElement,
-  IPoint
+  IPoint,
+  getWindow
 } from '../../Utilities';
 import { mergeStyles } from '@uifabric/merge-styles';
 
@@ -61,6 +62,9 @@ const _allInstances: {
   [key: string]: FocusZone;
 } = {};
 const _outerZones: Set<FocusZone> = new Set();
+
+// Track the 1 global keydown listener we hook to window.
+let _disposeGlobalKeyDownListener: () => void | undefined;
 
 const ALLOWED_INPUT_TYPES = ['text', 'number', 'password', 'email', 'tel', 'url', 'search'];
 
@@ -135,8 +139,7 @@ export class FocusZone extends React.Component<IFocusZoneProps> implements IFocu
     _allInstances[this._id] = this;
 
     if (root) {
-      const windowElement = root.ownerDocument!.defaultView!;
-
+      const windowElement = getWindow(root);
       let parentElement = getParent(root, ALLOW_VIRTUAL_ELEMENTS);
 
       while (parentElement && parentElement !== this._getDocument().body && parentElement.nodeType === 1) {
@@ -152,7 +155,7 @@ export class FocusZone extends React.Component<IFocusZoneProps> implements IFocu
       }
 
       if (windowElement && _outerZones.size === 1) {
-        this._disposables.push(on(windowElement, 'keydown', this._onKeyDownCapture, true));
+        _disposeGlobalKeyDownListener = on(windowElement, 'keydown', this._onKeyDownCapture, true);
       }
       this._disposables.push(on(root, 'blur', this._onBlur, true));
 
@@ -195,6 +198,11 @@ export class FocusZone extends React.Component<IFocusZoneProps> implements IFocu
 
     // Dispose all events.
     this._disposables.forEach(d => d());
+
+    // If this is the last outer zone, remove the keydown listener.
+    if (_outerZones.size === 0 && _disposeGlobalKeyDownListener) {
+      _disposeGlobalKeyDownListener();
+    }
   }
 
   public render() {
@@ -356,7 +364,7 @@ export class FocusZone extends React.Component<IFocusZoneProps> implements IFocu
     // update alignment an immediate descendant
     if (newActiveElement && newActiveElement !== this._activeElement) {
       if (isImmediateDescendant || initialElementFocused) {
-        this._setFocusAlignment(newActiveElement, initialElementFocused);
+        this._setFocusAlignment(newActiveElement, true, true);
       }
 
       this._activeElement = newActiveElement;
@@ -573,7 +581,7 @@ export class FocusZone extends React.Component<IFocusZoneProps> implements IFocu
               !this._shouldWrapFocus(this._activeElement as HTMLElement, NO_HORIZONTAL_WRAP)
             ) {
               focusChanged = ev.shiftKey ? this._moveFocusUp() : this._moveFocusDown();
-            } else if (direction === FocusZoneDirection.horizontal || direction === FocusZoneDirection.bidirectional) {
+            } else {
               const tabWithDirection = getRTL() ? !ev.shiftKey : ev.shiftKey;
               focusChanged = tabWithDirection ? this._moveFocusLeft() : this._moveFocusRight();
             }
@@ -1028,18 +1036,19 @@ export class FocusZone extends React.Component<IFocusZoneProps> implements IFocu
       const selectionEnd = element.selectionEnd;
       const isRangeSelected = selectionStart !== selectionEnd;
       const inputValue = element.value;
+      const isReadonly = element.readOnly;
 
       // We shouldn't lose focus in the following cases:
       // 1. There is range selected.
-      // 2. When selection start is larger than 0 and it is backward.
-      // 3. when selection start is not the end of length and it is forward.
+      // 2. When selection start is larger than 0 and it is backward and not readOnly.
+      // 3. when selection start is not the end of length, it is forward and not readOnly.
       // 4. We press any of the arrow keys when our handleTabKey isn't none or undefined (only losing focus if we hit tab)
       // and if shouldInputLoseFocusOnArrowKey is defined, if scenario prefers to not loose the focus which is determined by calling the
       // callback shouldInputLoseFocusOnArrowKey
       if (
         isRangeSelected ||
-        (selectionStart! > 0 && !isForward) ||
-        (selectionStart !== inputValue.length && isForward) ||
+        (selectionStart! > 0 && !isForward && !isReadonly) ||
+        (selectionStart !== inputValue.length && isForward && !isReadonly) ||
         (!!this.props.handleTabKey && !(this.props.shouldInputLoseFocusOnArrowKey && this.props.shouldInputLoseFocusOnArrowKey(element)))
       ) {
         return false;

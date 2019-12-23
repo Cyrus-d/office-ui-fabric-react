@@ -1,7 +1,86 @@
 # Change Log - @uifabric/experiments
 
-This log was last generated on Fri, 06 Sep 2019 12:34:51 GMT and should not be manually modified.
+This log was last generated on Tue, 17 Dec 2019 12:29:42 GMT and should not be manually modified.
 
+## 7.18.10
+Tue, 17 Dec 2019 12:29:42 GMT
+
+### Patches
+
+- Refining typography and signal icon on top of Folder Icon, filetype mapping updates (caperez@microsoft.com)
+- PersonaCoin: make divs role presentation (micahgodbolt@gmail.com)
+## 7.18.9
+Sun, 15 Dec 2019 23:45:36 GMT
+
+### Patches
+
+- Fix minor picker doc issue (elcraig@microsoft.com)
+## 7.18.8
+Fri, 06 Dec 2019 12:33:21 GMT
+
+### Patches
+
+- updated snapshots (betrue@microsoft.com)
+## 7.18.7
+Thu, 05 Dec 2019 12:34:16 GMT
+
+### Patches
+
+- ComboBox: empty errorMessage shouldn't create white space (aneeshak@microsoft.com)
+## 7.18.6
+Mon, 18 Nov 2019 12:33:30 GMT
+
+### Patches
+
+- update test due to fix: Combobox high contrast mode fixes for input box, caret down button, option hover styles (xgao@microsoft.com)
+## 7.18.5
+Thu, 14 Nov 2019 12:30:52 GMT
+
+### Patches
+
+- Added ariaLabel to microfeedback component (kamal.elkhadiri@microsoft.com)
+## 7.18.4
+Fri, 08 Nov 2019 12:30:07 GMT
+
+### Patches
+
+- Add px units to flexBasis styling by default. Remove existing styling usage where it had no effect before this PR. (jagore@microsoft.com)
+## 7.18.3
+Tue, 08 Oct 2019 12:31:37 GMT
+
+### Patches
+
+- Updating snapshots. (Humberto.Morimoto@microsoft.com)
+## 7.18.2
+Thu, 03 Oct 2019 23:14:46 GMT
+
+### Patches
+
+- Fixes publish issue from beachball (odbuild@microsoft.com)
+## 7.18.0
+Fri, 27 Sep 2019 12:33:04 GMT
+
+### Minor changes
+
+- Golden Folder grid view CSS cleanup for Fabric Master (caperez@microsoft.com)
+## 7.17.1
+Mon, 23 Sep 2019 12:33:15 GMT
+
+### Patches
+
+- Icon Accessibility updates: update aria-hidden to pull aria-labelledBy from root and imageProps and removed role presentation - should not apply when a label is provided. (marygans@microsoft.com)
+## 7.17.0
+Wed, 18 Sep 2019 12:32:55 GMT
+
+### Minor changes
+
+- listen to composition events only for IME languages in autofill (amyngu@microsoft.com)
+## 7.16.2
+Thu, 12 Sep 2019 12:34:15 GMT
+
+### Patches
+
+- Update examples to only export one component (elcraig@microsoft.com)
 ## 7.16.1
 Fri, 06 Sep 2019 12:34:51 GMT
 
